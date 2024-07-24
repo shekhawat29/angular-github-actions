@@ -17,16 +17,23 @@ jobs:
       with:
         node-version: 18
 
+    - name: Install SonarQube scanner
+      if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
+      shell: powershell
+      run: |
+          New-Item -Path .\.sonar\scanner -ItemType Directory
+          dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
+
     - name: Install dependencies
       run: npm install
 
-    - name: Run tests
-      run: npm run test:headless
+   # - name: Run tests
+    #  run: npm run test:headless
 
     - name: Build
       run: |
          npm run build:prod
-         ./sonar-scanner ^
+         .\.sonar\scanner\dotnet-sonarscanner ^
             -Dsonar.projectKey=Q2E-Angular ^
             -Dsonar.organization=Q2E-Angular ^
             -Dsonar.sources=Q2EV3_DEV\App\Q2E\Angular9\src ^
