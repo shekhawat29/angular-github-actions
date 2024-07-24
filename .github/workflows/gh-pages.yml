@@ -24,7 +24,19 @@ jobs:
       run: npm run test:headless
 
     - name: Build
-      run: npm run build:prod
+      run: |
+         npm run build:prod
+         sonar-scanner ^
+            -Dsonar.projectKey=Q2E-Angular ^
+            -Dsonar.organization=Q2E-Angular ^
+            -Dsonar.sources=Q2EV3_DEV\App\Q2E\Angular9\src ^
+            -Dsonar.exclusions=Q2EV3_DEV\App\Q2E\Angular9\**\node_modules\**,Q2EV3_DEV\App\Q2E\Angular9\**/*.spec.ts ^
+            -Dsonar.host.url="${{ secrets.SONAR_HOST_URL }}" ^
+            -Dsonar.login="${{ secrets.SONAR_TOKEN_ANGULAR }}" ^
+            -Dsonar.github.repository=$GITHUB_REPOSITORY ^
+            -Dsonar.github.oauth=$GITHUB_TOKEN ^
+            -Dsonar.analysis.mode=preview ^
+            -Dsonar.verbose=true
 
     - name: Deploy
       if: success()
