@@ -31,6 +31,7 @@ jobs:
       with:
           organization: "Q2E-Angular"
           projectKey: "Q2E-Angular"
+          args: -X
       
     - name: Build
       run: |
