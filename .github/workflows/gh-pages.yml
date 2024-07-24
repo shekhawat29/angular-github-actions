@@ -28,8 +28,9 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_ANGULAR }}
-        sonar.projectKey: "Q2E-Angular"
-        sonar.organization: "Q2E-Angular"
+      with:
+          organization: "Q2E-Angular"
+          projectKey: "Q2E-Angular"
       
     - name: Build
       run: |
