@@ -27,7 +27,7 @@ jobs:
       uses: sonarsource/sonarcloud-github-action@master
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_ANGULAR }}
-        SONAR_HOST_URL: "http://52.153.218.251:9000/"
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
       with:
           organization: "Q2E-Angular"
           projectKey: "Q2E-Angular"
