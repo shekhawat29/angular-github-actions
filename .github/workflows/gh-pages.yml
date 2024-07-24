@@ -17,25 +17,18 @@ jobs:
       with:
         node-version: 18
 
-    - name: Download and Install SonarScanner
-      run: |
-          # Download SonarScanner
-          Invoke-WebRequest -Uri 'https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.0.12008-windows.zip' -OutFile 'sonar-scanner-cli.zip'
-          # Extract SonarScanner
-          Expand-Archive -Path 'sonar-scanner-cli.zip' -DestinationPath 'C:\sonar-scanner'
-          # Optionally, move SonarScanner to a specific directory
-          Move-Item -Path 'C:\sonar-scanner\sonar-scanner-4.8.0.12008-windows' -Destination 'C:\sonar-scanner\sonar-scanner'
-          # Add SonarScanner to PATH
-          echo '##vso[task.prependpath]C:\sonar-scanner\sonar-scanner\bin'
-          # Verify installation
-          sonar-scanner -v
-
     - name: Install dependencies
       run: npm install
 
    # - name: Run tests
     #  run: npm run test:headless
 
+    - name: SonarCloud Scan
+      uses: sonarsource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_ANULAR }}
+      
     - name: Build
       run: |
          npm run build:prod
