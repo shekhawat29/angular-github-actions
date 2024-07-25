@@ -26,7 +26,7 @@ jobs:
     - name: SonarCloud Scan
       uses: sonarsource/sonarqube-scan-action@master
       env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_ANGULAR }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       
     - name: Build
       run: |
@@ -36,7 +36,7 @@ jobs:
             -Dsonar.organization=Q2E-Angular \
             -Dsonar.sources=.c \
             -Dsonar.host.url="http://52.153.218.251:9000" \
-            -Dsonar.login="${{ secrets.SONAR_TOKEN_ANGULAR }}" \
+            -Dsonar.login="${{ secrets.SONAR_TOKEN }}" \
             -Dsonar.github.repository=$GITHUB_REPOSITORY \
             -Dsonar.github.oauth=$GITHUB_TOKEN \
             -Dsonar.analysis.mode=preview \
