@@ -27,7 +27,6 @@ jobs:
       uses: sonarsource/sonarqube-scan-action@master
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_ANGULAR }}
-        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
       with:
           organization: "Q2E-Angular"
           projectKey: "Q2E-Angular"
@@ -36,16 +35,15 @@ jobs:
     - name: Build
       run: |
          npm run build:prod
-         sonar-scanner ^
-            -Dsonar.projectKey=Q2E-Angular ^
-            -Dsonar.organization=Q2E-Angular ^
-            -Dsonar.sources=Q2EV3_DEV\App\Q2E\Angular9\src ^
-            -Dsonar.exclusions=Q2EV3_DEV\App\Q2E\Angular9\**\node_modules\**,Q2EV3_DEV\App\Q2E\Angular9\**/*.spec.ts ^
-            -Dsonar.host.url="${{ secrets.SONAR_HOST_URL }}" ^
-            -Dsonar.login="${{ secrets.SONAR_TOKEN_ANGULAR }}" ^
-            -Dsonar.github.repository=$GITHUB_REPOSITORY ^
-            -Dsonar.github.oauth=$GITHUB_TOKEN ^
-            -Dsonar.analysis.mode=preview ^
+         sonar-scanner \
+            -Dsonar.projectKey=Q2E-Angular \
+            -Dsonar.organization=Q2E-Angular \
+            -Dsonar.sources=.c \
+            -Dsonar.host.url="${{ secrets.SONAR_HOST_URL }}" \
+            -Dsonar.login="${{ secrets.SONAR_TOKEN_ANGULAR }}" \
+            -Dsonar.github.repository=$GITHUB_REPOSITORY \
+            -Dsonar.github.oauth=$GITHUB_TOKEN \
+            -Dsonar.analysis.mode=preview \
             -Dsonar.verbose=true
 
     - name: Deploy
