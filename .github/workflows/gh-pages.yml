@@ -33,7 +33,7 @@ jobs:
           args: >
               -Dsonar.projectKey="Q2E-Angular" 
               -Dsonar.organization="Q2E-Angular" 
-              -Dsonar.sources=.c 
+              -Dsonar.sources=.
               -Dsonar.github.repository=$GITHUB_REPOSITORY 
               -Dsonar.github.oauth=$GITHUB_TOKEN 
               -Dsonar.verbose=true
