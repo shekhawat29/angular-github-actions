@@ -44,12 +44,11 @@ jobs:
          sonar-scanner \
             -Dsonar.projectKey="Q2E-Angular" \
             -Dsonar.organization="Q2E-Angular" \
-            -Dsonar.sources=. \
+            -Dsonar.sources=src \
             -Dsonar.host.url="http://52.153.218.251:9000" \
             -Dsonar.login="${{ secrets.SONAR_TOKEN }}" \
             -Dsonar.github.repository=$GITHUB_REPOSITORY \
             -Dsonar.github.oauth=$GITHUB_TOKEN \
-            -Dsonar.analysis.mode=preview \
             -Dsonar.verbose=true
 
     - name: Deploy
