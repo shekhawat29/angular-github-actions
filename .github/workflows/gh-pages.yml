@@ -36,7 +36,6 @@ jobs:
               -Dsonar.sources=.c 
               -Dsonar.github.repository=$GITHUB_REPOSITORY 
               -Dsonar.github.oauth=$GITHUB_TOKEN 
-              -Dsonar.analysis.mode=preview 
               -Dsonar.verbose=true
       
     - name: Build
