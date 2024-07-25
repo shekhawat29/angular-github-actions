@@ -31,8 +31,8 @@ jobs:
         SONAR_PROJECT_KEY: "Q2E-Angular"
       with:
           args: >
-              -Dsonar.projectKey="Q2E-Angular" 
-              -Dsonar.organization="Q2E-Angular" 
+              -Dsonar.projectKey=Q2E-Angular
+              -Dsonar.organization=Q2E-Angular 
               -Dsonar.sources=.
               -Dsonar.github.repository=$GITHUB_REPOSITORY 
               -Dsonar.github.oauth=$GITHUB_TOKEN 
