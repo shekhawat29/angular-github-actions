@@ -32,8 +32,8 @@ jobs:
       run: |
          npm run build:prod
          sonar-scanner \
-            -Dsonar.projectKey=Q2E-Angular \
-            -Dsonar.organization=Q2E-Angular \
+            -Dsonar.projectKey="Q2E-Angular" \
+            -Dsonar.organization="Q2E-Angular" \
             -Dsonar.sources=.c \
             -Dsonar.host.url="http://52.153.218.251:9000" \
             -Dsonar.login="${{ secrets.SONAR_TOKEN }}" \
