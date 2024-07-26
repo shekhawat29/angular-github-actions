@@ -33,7 +33,8 @@ jobs:
             -Dsonar.organization=Q2E-Angular \
             -Dsonar.sources=. \
             -Dsonar.github.repository=$GITHUB_REPOSITORY \
-            -Dsonar.github.oauth=$GITHUB_TOKEN
+            -Dsonar.github.oauth=$GITHUB_TOKEN \
+            -Dsonar.verbose=true
 
       
     - name: Build
