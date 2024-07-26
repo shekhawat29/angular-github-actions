@@ -20,37 +20,25 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Cache SonarQube packages
-      uses: actions/cache@v1
-      with:
-          path: ~\sonar\cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
+    - name: Install SonarQube Scanner
+      run: npm install -g sonarqube-scanner
 
-    - name: Cache SonarQube scanner
-      id: cache-sonar-scanner
-      uses: actions/cache@v1
-      with:
-          path: .\.sonar\scanner
-          key: ${{ runner.os }}-sonar-scanner
-          restore-keys: ${{ runner.os }}-sonar-scanner
-
-    - name: Install SonarQube scanner
-      if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
-      shell: powershell
+    - name: Run SonarQube Scan
+      env:
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       run: |
-          New-Item -Path .\.sonar\scanner -ItemType Directory
-          dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
+          npx sonar-scanner \
+            -Dsonar.projectKey=Q2E-Angular \
+            -Dsonar.sources=. \
+            -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
       
     - name: Build
       run: |
-         .\.sonar\scanner\dotnet-sonarscanner begin /k:"Q2E-Angular" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}"
          npm run build:prod
-         .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
-
-
-         
+    
 
     - name: Deploy
       if: success()
