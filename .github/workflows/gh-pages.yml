@@ -30,9 +30,10 @@ jobs:
       run: |
           npx sonar-scanner \
             -Dsonar.projectKey=Q2E-Angular \
+            -Dsonar.organization=Q2E-Angular \
             -Dsonar.sources=. \
-            -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+            -Dsonar.github.repository=$GITHUB_REPOSITORY \
+            -Dsonar.github.oauth=$GITHUB_TOKEN
 
       
     - name: Build
