@@ -28,13 +28,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
       run: |
-          sonar-scanner \
-            -Dsonar.projectKey=Q2E-Angular \
-            -Dsonar.organization=Q2E-Angular \
-            -Dsonar.sources=. \
-            -Dsonar.github.repository=$GITHUB_REPOSITORY \
-            -Dsonar.github.oauth=$GITHUB_TOKEN \
-            -Dsonar.verbose=true
+          sonar-scanner 
 
       
     - name: Build
