@@ -46,7 +46,7 @@ jobs:
     - name: Build
       run: |
          .\.sonar\scanner\dotnet-sonarscanner begin /k:"Q2E-Angular" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}"
-          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN_NET }}"
+          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
 
 
          
