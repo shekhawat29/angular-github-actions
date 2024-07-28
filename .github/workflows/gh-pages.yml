@@ -31,9 +31,9 @@ jobs:
           sonar-scanner 
 
       
-    - name: Build
-      run: |
-         npm run build:prod
+    #- name: Build
+     # run: |
+       #  npm run build:prod
     
 
     - name: Deploy
