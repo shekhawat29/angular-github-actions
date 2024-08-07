@@ -29,7 +29,13 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
       run: |
-          sonar-scanner
+          sonar-scanner \
+          -Dsonar.projectKey=github-actions-tests \
+          -Dsonar.projectName="github-actions-tests" \
+          -Dsonar.projectVersion=1.0 \
+          -Dsonar.sources=src \
+          -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
       
     #- name: Build
